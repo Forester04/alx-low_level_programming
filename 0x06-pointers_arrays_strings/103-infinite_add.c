@@ -1,60 +1,65 @@
 #include "main.h"
 
 /**
-* infinite_add - C function that adds two numbers stored
-*in strings to a buffer.
-*Assumes that strings are never empty and
-*that numbers will always be positive, or 0.
-*Assumes there are only digits stored in the number strings.
-*If result can be stored in the buffer,
-*returns a pointer to the result.
-*If result cannot be stored in the buffer, returns `0`.
-*@n1:first number to be added
-*@n2:second number to be added
-*@r: store result
-*@size_r: size of buffer
-*Return:returns pointer to result
-*/
+ * infinite_add - add 2 integers.
+ * @n1: integer
+ * @n2: integer
+ * @r: buffer
+ * size_r: size of r
+ * Return: char
+ */
+
+int _atoi(char *s)
+{
+	int sign = 1, resp = 0, firstNum;
+
+	for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
+	{
+		if (s[firstNum] == '-')
+		{
+			sign *= -1;
+		}
+	}
+
+	for (int i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
+	{
+		resp *= 10;
+		resp += (s[i] - 48);
+	}
+
+	return (sign * resp);
+}
+
+void int_to_string(int n)
+{
+int divisor = 1, i, resp;
+
+
+for (i = 0; n / divisor > 9; i++)
+{
+	divisor *= 10;
+}
+
+char str[i];
+
+for (int cmpt = 0; divisor >= 10; divisor /= 10, cmpt++)
+{
+	resp = n / divisor;
+	str[cmpt] = '0' + resp;
+	n = n - resp * divisor;
+}
+str[i] = ('0' + n);
+
+}
+
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-}
+    int sum, a, b;
+    a = _atoi(n1);
+    b = _atoi(n2);
 
-/**
-* add_strings - Adds the numbers stored in two strings.
-* @n1: The string containing the first number to be added.
-* @n2: The string containing the second number to be added.
-* @r: The buffer to store the result.
-* @r_index: The current index of the buffer.
-*
-* Return: If r can store the sum - a pointer to the result.
-*         If r cannot store the sum - 0.
-*/
+    sum = a + b;
 
-char *add_strings(char *n1, char *n2, char *r, int r_index)
-{
-	int num, tens = 0;
 
-	for (; *n1 && *n2; n1--, n2--, r_index--)
-	{
-		num = (*n1 - '0') + (*n2 - '0');
-		num += tens;
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
-	}
-
-	for (; *n1; n1--; r_index++)
-	{
-		num = *(n1 - '0') + tens; 
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
-	}
-
-	for (; *n2; n2--;  r_index--)
-	{
-		num = (*n2 - '0') + tens; 
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10; 
-	}
-	
 }
