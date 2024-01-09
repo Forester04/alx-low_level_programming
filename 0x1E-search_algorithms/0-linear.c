@@ -1,59 +1,25 @@
-#ifndef SEARCH_ALGOS_H
-#define SEARCH_ALGOS_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-
+#include "search_algos.h"
 
 /**
- * struct listint_s - singly linked list
- *
- * @n: Integer
- * @index: Index of the node in the list
- * @next: Pointer to the next node
- *
- * Description: singly linked list node structure
- * for Holberton project
+ * linear_search - searches for a value in a sorted array of integers
+ * @array: array of integers
+ * @size: size of array
+ * @value: value to search for
+ * Return: index of value or -1 if not found
  */
-typedef struct listint_s
+
+
+int linear_search(int *array, size_t size, int value)
 {
-    int n;
-    size_t index;
-    struct listint_s *next;
-} listint_t;
+	size_t inc;
 
-
-
-/**
- * struct skiplist_s - Singly linked list with an express lane
- *
- * @n: Integer
- * @index: Index of the node in the list
- * @next: Pointer to the next node
- * @express: Pointer to the next node in the express lane
- *
- * Description: singly linked list node structure with an express lane
- * for Holberton project
- */
-typedef struct skiplist_s
-{
-    int n;
-    size_t index;
-    struct skiplist_s *next;
-    struct skiplist_s *express;
-} skiplist_t;
-
-
-int linear_search(int *array, size_t size, int value);
-int binary_search(int *array, size_t size, int value);
-int _binary_search(int *array, size_t left, size_t right, int value);
-int jump_search(int *array, size_t size, int value);
-int interpolation_search(int *array, size_t size, int value);
-int exponential_search(int *array, size_t size, int value);
-int advanced_binary_recursive(int *array, size_t left, size_t right, int value);
-int advanced_binary(int *array, size_t size, int value);
-listint_t *jump_list(listint_t *list, size_t size, int value);
-skiplist_t *linear_skip(skiplist_t *list, int value);
-
-#endif
+	if (array == NULL)
+		return (-1);
+	for (inc = 0; inc < size; inc++)
+	{
+		printf("Value checked array[%ld] = [%d]\n", inc, array[inc]);
+		if (array[inc] == value)
+			return (inc);
+	}
+	return (-1);
+}
